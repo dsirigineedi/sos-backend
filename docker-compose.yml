@@ -1,0 +1,28 @@
+version: '3.4'
+
+services:
+  web:
+    container_name: sos
+    restart: always
+    build: .
+    ports:
+    - "3000:3000"
+    volumes: 
+      # - ./path :/usr/src/app/path
+      - $HOME/.aws/:/home/.aws/
+    env_file: 
+      - .env
+
+    environment: 
+      - DATABASE=${DATABASE}
+      - DB_USER=${DB_USER}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - DB_HOST=${DB_HOST}
+      - PORT=3000
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_EXPIRES_IN=${JWT_EXPIRES_IN}
+      - JWT_COOKIE_EXPIRES_IN=${JWT_COOKIE_EXPIRES_IN}
+      - EMAIL_USERNAME=${EMAIL_USERNAME}
+      - EMAIL_PASSWORD=${EMAIL_PASSWORD}
+      - EMAIL_HOST=${EMAIL_HOST}
+      - EMAIL_PORT=${EMAIL_PORT}
